@@ -15,6 +15,8 @@ public class Task
     private String title;
     private String description;
 
+    private String finishTime;
+
     public int getId() {
         return id;
     }
@@ -111,6 +113,14 @@ public class Task
         this.description = description;
     }
 
+    public String getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -126,6 +136,7 @@ public class Task
                 ", dueTime='" + dueTime + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", finishTime='" + finishTime + '\'' +
                 '}';
     }
 }
