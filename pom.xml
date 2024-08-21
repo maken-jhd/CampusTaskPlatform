@@ -48,7 +48,6 @@
             <artifactId>mybatis-plus-join-boot-starter</artifactId>
             <version>1.4.11</version>
         </dependency>
-
     </dependencies>
     <dependencyManagement>
         <dependencies>

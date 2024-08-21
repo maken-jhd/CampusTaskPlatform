@@ -3,15 +3,15 @@ package com.wuyanteam.campustaskplatform.entity;
 public class Task
 {
     private int id;
-    private int publisher_id;
-    private int taker_id;
-    private String publish_time;
+    private int publisherId;
+    private int takerId;
+    private String publishTime;
     private String state;
-    private String take_time;
+    private String takeTime;
     private int reward;
-    private String start_address;
-    private String end_address;
-    private String due_time;
+    private String startAddress;
+    private String endAddress;
+    private String dueTime;
     private String title;
     private String description;
 
@@ -23,28 +23,28 @@ public class Task
         this.id = id;
     }
 
-    public int getPublisher_id() {
-        return publisher_id;
+    public int getPublisherId() {
+        return publisherId;
     }
 
-    public void setPublisher_id(int publisher_id) {
-        this.publisher_id = publisher_id;
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 
-    public int getTaker_id() {
-        return taker_id;
+    public int getTakerId() {
+        return takerId;
     }
 
-    public void setTaker_id(int taker_id) {
-        this.taker_id = taker_id;
+    public void setTakerId(int takerId) {
+        this.takerId = takerId;
     }
 
-    public String getPublish_time() {
-        return publish_time;
+    public String getPublishTime() {
+        return publishTime;
     }
 
-    public void setPublish_time(String publish_time) {
-        this.publish_time = publish_time;
+    public void setPublishTime(String publishTime) {
+        this.publishTime = publishTime;
     }
 
     public String getState() {
@@ -55,12 +55,12 @@ public class Task
         this.state = state;
     }
 
-    public String getTake_time() {
-        return take_time;
+    public String getTakeTime() {
+        return takeTime;
     }
 
-    public void setTake_time(String take_time) {
-        this.take_time = take_time;
+    public void setTakeTime(String takeTime) {
+        this.takeTime = takeTime;
     }
 
     public int getReward() {
@@ -71,28 +71,28 @@ public class Task
         this.reward = reward;
     }
 
-    public String getStart_address() {
-        return start_address;
+    public String getStartAddress() {
+        return startAddress;
     }
 
-    public void setStart_address(String start_address) {
-        this.start_address = start_address;
+    public void setStartAddress(String startAddress) {
+        this.startAddress = startAddress;
     }
 
-    public String getEnd_address() {
-        return end_address;
+    public String getEndAddress() {
+        return endAddress;
     }
 
-    public void setEnd_address(String end_address) {
-        this.end_address = end_address;
+    public void setEndAddress(String endAddress) {
+        this.endAddress = endAddress;
     }
 
-    public String getDue_time() {
-        return due_time;
+    public String getDueTime() {
+        return dueTime;
     }
 
-    public void setDue_time(String due_time) {
-        this.due_time = due_time;
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
     }
 
     public String getTitle() {
@@ -115,15 +115,15 @@ public class Task
     public String toString() {
         return "Task{" +
                 "id=" + id +
-                ", publisher_id=" + publisher_id +
-                ", taker_id=" + taker_id +
-                ", publish_time='" + publish_time + '\'' +
+                ", publisherId=" + publisherId +
+                ", takerId=" + takerId +
+                ", publishTime='" + publishTime + '\'' +
                 ", state='" + state + '\'' +
-                ", take_time='" + take_time + '\'' +
+                ", takeTime='" + takeTime + '\'' +
                 ", reward=" + reward +
-                ", start_address='" + start_address + '\'' +
-                ", end_address='" + end_address + '\'' +
-                ", due_time='" + due_time + '\'' +
+                ", startAddress='" + startAddress + '\'' +
+                ", endAddress='" + endAddress + '\'' +
+                ", dueTime='" + dueTime + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';

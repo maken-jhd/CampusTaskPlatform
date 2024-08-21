@@ -7,18 +7,18 @@ public class User
     private String password;
     private String sex;
     private int age;
-    private String acc_crt_time;
-    private int stu_id;
+    private String accCrtTime;
+    private int stuId;
     private int exp;
     private int level;
     private String campus;
-    private int like_count;
-    private String real_name;
+    private int likeCount;
+    private String realName;
     private String address;
     private int balance;
-    private String last_login_time;
-    private int take_num;
-    private int publish_num;
+    private String lastLoginTime;
+    private int takeNum;
+    private int publishNum;
 
     private String qq;
 
@@ -66,20 +66,20 @@ public class User
         this.age = age;
     }
 
-    public String getAcc_crt_time() {
-        return acc_crt_time;
+    public String getAccCrtTime() {
+        return accCrtTime;
     }
 
-    public void setAcc_crt_time(String acc_crt_time) {
-        this.acc_crt_time = acc_crt_time;
+    public void setAccCrtTime(String accCrtTime) {
+        this.accCrtTime = accCrtTime;
     }
 
-    public int getStu_id() {
-        return stu_id;
+    public int getStuId() {
+        return stuId;
     }
 
-    public void setStu_id(int stu_id) {
-        this.stu_id = stu_id;
+    public void setStuId(int stuId) {
+        this.stuId = stuId;
     }
 
     public int getExp() {
@@ -106,20 +106,20 @@ public class User
         this.campus = campus;
     }
 
-    public int getLike_count() {
-        return like_count;
+    public int getLikeCount() {
+        return likeCount;
     }
 
-    public void setLike_count(int like_count) {
-        this.like_count = like_count;
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getAddress() {
@@ -138,28 +138,28 @@ public class User
         this.balance = balance;
     }
 
-    public String getLast_login_time() {
-        return last_login_time;
+    public String getLastLoginTime() {
+        return lastLoginTime;
     }
 
-    public void setLast_login_time(String last_login_time) {
-        this.last_login_time = last_login_time;
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
-    public int getTake_num() {
-        return take_num;
+    public int getTakeNum() {
+        return takeNum;
     }
 
-    public void setTake_num(int take_num) {
-        this.take_num = take_num;
+    public void setTakeNum(int takeNum) {
+        this.takeNum = takeNum;
     }
 
-    public int getPublish_num() {
-        return publish_num;
+    public int getPublishNum() {
+        return publishNum;
     }
 
-    public void setPublish_num(int publish_num) {
-        this.publish_num = publish_num;
+    public void setPublishNum(int publishNum) {
+        this.publishNum = publishNum;
     }
 
     public String getQq() {
@@ -194,18 +194,18 @@ public class User
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
-                ", acc_crt_time='" + acc_crt_time + '\'' +
-                ", stu_id=" + stu_id +
+                ", accCrtTime='" + accCrtTime + '\'' +
+                ", stuId=" + stuId +
                 ", exp=" + exp +
                 ", level=" + level +
                 ", campus='" + campus + '\'' +
-                ", like_count=" + like_count +
-                ", real_name='" + real_name + '\'' +
+                ", likeCount=" + likeCount +
+                ", realName='" + realName + '\'' +
                 ", address='" + address + '\'' +
                 ", balance=" + balance +
-                ", last_login_time='" + last_login_time + '\'' +
-                ", take_num=" + take_num +
-                ", publish_num=" + publish_num +
+                ", lastLoginTime='" + lastLoginTime + '\'' +
+                ", takeNum=" + takeNum +
+                ", publishNum=" + publishNum +
                 ", qq='" + qq + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +

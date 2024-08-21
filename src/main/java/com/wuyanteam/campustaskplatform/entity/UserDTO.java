@@ -2,28 +2,40 @@ package com.wuyanteam.campustaskplatform.entity;
 
 public class UserDTO
 {
-    private String take_time;
-    private String state;
+
     private String reward;
-    private String due_time;
+    private String dueTime;
     private String title;
     private String username;
+    private String startAddress;
+    private String endAddress;
+    private String sex;
 
-    public String getTake_time() {
-        return take_time;
+    public String getSex() {
+        return sex;
     }
 
-    public void setTake_time(String take_time) {
-        this.take_time = take_time;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getState() {
-        return state;
+    public String getStartAddress() {
+        return startAddress;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStartAddress(String startAddress) {
+        this.startAddress = startAddress;
     }
+
+    public String getEndAddress() {
+        return endAddress;
+    }
+
+    public void setEndAddress(String endAddress) {
+        this.endAddress = endAddress;
+    }
+
+
 
     public String getReward() {
         return reward;
@@ -33,12 +45,12 @@ public class UserDTO
         this.reward = reward;
     }
 
-    public String getDue_time() {
-        return due_time;
+    public String getDueTime() {
+        return dueTime;
     }
 
-    public void setDue_time(String due_time) {
-        this.due_time = due_time;
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
     }
 
     public String getTitle() {
@@ -60,12 +72,13 @@ public class UserDTO
     @Override
     public String toString() {
         return "UserDTO{" +
-                "take_time='" + take_time + '\'' +
-                ", state='" + state + '\'' +
                 ", reward='" + reward + '\'' +
-                ", due_time='" + due_time + '\'' +
+                ", dueTime='" + dueTime + '\'' +
                 ", title='" + title + '\'' +
                 ", username='" + username + '\'' +
+                ", startAddress='" + startAddress + '\'' +
+                ", endAddress='" + endAddress + '\'' +
+                ", sex='" + sex + '\'' +
                 '}';
     }
 }
