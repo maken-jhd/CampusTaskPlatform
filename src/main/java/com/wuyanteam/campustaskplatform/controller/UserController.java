@@ -28,7 +28,7 @@ public class UserController
         List<UserDTO> list = taskMapper.selectJoinList(UserDTO.class, new MPJQueryWrapper<Task>()
                 .select("take_time","state","reward","due_time","title")
                 .select("username")
-                .innerJoin("`user` on task.publisher_id = `user`.id")
+                .innerJoin("`user` on publisher_id = `user`.id")
                 .eq("taker_id",2)
                 .orderByAsc("take_time"));
         return list;
