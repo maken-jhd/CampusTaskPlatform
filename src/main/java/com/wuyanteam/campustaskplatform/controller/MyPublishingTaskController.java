@@ -6,73 +6,52 @@ import com.github.yulichang.query.MPJQueryWrapper;
 import com.wuyanteam.campustaskplatform.entity.Task;
 import com.wuyanteam.campustaskplatform.entity.UTT;
 import com.wuyanteam.campustaskplatform.mapper.TaskMapper;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/mypublishingtask")
-public class MyPublishingTaskController
-{
+public class MyPublishingTaskController {
+
     @Resource
     private TaskMapper taskMapper;
-    //分页查询
+
+    // 分页查询
     @PostMapping("/{state}")
-    public IPage myPublishingTask(int myId, int page, String sortRule, boolean ifDesc, @PathVariable String state)
-    {
-        IPage<UTT> iPage;
-        if(!ifDesc)
-        {
-            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
-                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
-                    .select("username", "sex")
-                    .leftJoin("`user` on taker_id = `user`.id")
-                    .eq("publisher_id", myId)
-                    .eq("state",state)
-                    .orderByAsc(sortRule));
-        }
-        else
-        {
-            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
-                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
-                    .select("username", "sex")
-                    .leftJoin("`user` on taker_id = `user`.id")
-                    .eq("publisher_id", myId)
-                    .eq("state",state)
-                    .orderByDesc(sortRule));
-        }
-        return iPage;
+    public IPage myPublishingTask(int myId, int page,  String sortRule, boolean isDesc, @PathVariable String state) {
+        return getTasks(myId, page, sortRule, isDesc, state, null);
     }
-    //搜索
+
+    // 搜索
     @PostMapping("/search/{state}")
-    public IPage searchPublishingTask(int myId,int page,String sortRule,boolean ifDesc, @PathVariable String state,String keyword) {
+    public IPage searchPublishingTask(int myId, int page, String sortRule, boolean isDesc, @PathVariable String state, String keyword) {
+        return getTasks(myId, page, sortRule, isDesc, state, keyword);
+    }
+
+    private IPage getTasks(int myId, int page, @RequestParam(defaultValue = "publish_time")String sortRule, @RequestParam(defaultValue = "true")boolean isDesc, String state, String keyword) {
         IPage<UTT> iPage;
-        if (!ifDesc) {
-            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
-                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
-                    .select("username", "sex")
-                    .leftJoin("`user` on taker_id = `user`.id")
-                    .eq("publisher_id", myId)
-                    .eq("state", state)
-                    .like("`user`.username", keyword)
+        MPJQueryWrapper<Task> queryWrapper = new MPJQueryWrapper<Task>()
+                .select("take_time", "publish_time", "finish_time", "due_time", "title")
+                .select("username", "sex")
+                .leftJoin("`user` on taker_id = `user`.id")
+                .eq("publisher_id", myId)
+                .eq("state", state);
+
+        if (keyword != null) {
+            queryWrapper = queryWrapper.and(i -> i.like("`user`.username", keyword)
                     .or().like("title", keyword)
                     .or().like("description", keyword)
-                    .orderByAsc(sortRule));
-        } else {
-            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
-                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
-                    .select("username", "sex")
-                    .leftJoin("`user` on taker_id = `user`.id")
-                    .eq("publisher_id", myId)
-                    .eq("state", state)
-                    .like("`user`.username", keyword)
-                    .or().like("title", keyword)
-                    .or().like("description", keyword)
-                    .orderByDesc(sortRule));
+                    .or().like("start_address", keyword)
+                    .or().like("end_address", keyword));
         }
+
+        if (isDesc) {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, queryWrapper.orderByDesc(sortRule));
+        } else {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, queryWrapper.orderByAsc(sortRule));
+        }
+
         return iPage;
     }
 }
