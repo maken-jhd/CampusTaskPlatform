@@ -20,11 +20,8 @@ public class MyTakingTaskController
 
     @Resource
     private TaskMapper taskMapper;
-    //分页查询
-    //此处注解暂改为用户传参以测试
-    //已实现
+//分页查询
     @PostMapping("/{state}")
-//    @PostMapping("/complete")
     public IPage myTakingTask(int myId,int page,String sortRule,boolean ifDesc,@PathVariable String state)
     {
         IPage<UTT> iPage;
@@ -46,6 +43,35 @@ public class MyTakingTaskController
                     .innerJoin("`user` on publisher_id = `user`.id")
                     .eq("taker_id", myId)
                     .eq("state",state)
+                    .orderByDesc(sortRule));
+        }
+        return iPage;
+    }
+    //搜索
+    @PostMapping("/search/{state}")
+    public IPage searchTakingTask(int myId,int page,String sortRule,boolean ifDesc, @PathVariable String state,String keyword) {
+        IPage<UTT> iPage;
+        if (!ifDesc) {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
+                    .select("reward", "start_address", "end_address", "due_time", "title")
+                    .select("username", "sex")
+                    .innerJoin("`user` on publisher_id = `user`.id")
+                    .eq("taker_id", myId)
+                    .eq("state",state)
+                    .like("`user`.username", keyword)
+                    .or().like("title", keyword)
+                    .or().like("description", keyword)
+                    .orderByAsc(sortRule));
+        } else {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
+                    .select("reward", "start_address", "end_address", "due_time", "title")
+                    .select("username", "sex")
+                    .innerJoin("`user` on publisher_id = `user`.id")
+                    .eq("taker_id", myId)
+                    .eq("state",state)
+                    .like("`user`.username", keyword)
+                    .or().like("title", keyword)
+                    .or().like("description", keyword)
                     .orderByDesc(sortRule));
         }
         return iPage;

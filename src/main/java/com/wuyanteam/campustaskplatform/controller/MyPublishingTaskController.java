@@ -19,6 +19,7 @@ public class MyPublishingTaskController
 {
     @Resource
     private TaskMapper taskMapper;
+    //分页查询
     @PostMapping("/{state}")
     public IPage myPublishingTask(int myId, int page, String sortRule, boolean ifDesc, @PathVariable String state)
     {
@@ -28,8 +29,8 @@ public class MyPublishingTaskController
             iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
                     .select("take_time", "publish_time", "finish_time", "due_time", "title")
                     .select("username", "sex")
-                    .innerJoin("`user` on taker_id = `user`.id")
-                    .eq("taker_id", myId)
+                    .leftJoin("`user` on taker_id = `user`.id")
+                    .eq("publisher_id", myId)
                     .eq("state",state)
                     .orderByAsc(sortRule));
         }
@@ -38,9 +39,38 @@ public class MyPublishingTaskController
             iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
                     .select("take_time", "publish_time", "finish_time", "due_time", "title")
                     .select("username", "sex")
-                    .innerJoin("`user` on taker_id = `user`.id")
-                    .eq("taker_id", myId)
+                    .leftJoin("`user` on taker_id = `user`.id")
+                    .eq("publisher_id", myId)
                     .eq("state",state)
+                    .orderByDesc(sortRule));
+        }
+        return iPage;
+    }
+    //搜索
+    @PostMapping("/search/{state}")
+    public IPage searchPublishingTask(int myId,int page,String sortRule,boolean ifDesc, @PathVariable String state,String keyword) {
+        IPage<UTT> iPage;
+        if (!ifDesc) {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
+                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
+                    .select("username", "sex")
+                    .leftJoin("`user` on taker_id = `user`.id")
+                    .eq("publisher_id", myId)
+                    .eq("state", state)
+                    .like("`user`.username", keyword)
+                    .or().like("title", keyword)
+                    .or().like("description", keyword)
+                    .orderByAsc(sortRule));
+        } else {
+            iPage = taskMapper.selectJoinPage(new Page<>(page, 10), UTT.class, new MPJQueryWrapper<Task>()
+                    .select("take_time", "publish_time", "finish_time", "due_time", "title")
+                    .select("username", "sex")
+                    .leftJoin("`user` on taker_id = `user`.id")
+                    .eq("publisher_id", myId)
+                    .eq("state", state)
+                    .like("`user`.username", keyword)
+                    .or().like("title", keyword)
+                    .or().like("description", keyword)
                     .orderByDesc(sortRule));
         }
         return iPage;
