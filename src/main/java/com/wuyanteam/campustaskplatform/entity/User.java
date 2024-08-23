@@ -1,30 +1,34 @@
 package com.wuyanteam.campustaskplatform.entity;
 
+import javax.persistence.*;
+
+@Table(name="user")
+@Entity
+//系统设置为1，用户传入为2
 public class User {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private int id;
     private String username;
     private String password;
     private String sex;
     private int age;
-    private String accCrtTime;
-    private int stuId;
-    private int exp;
-    private int level;
-    private String campus;
-    private int likeCount;
-    private String realName;
+    private String accCrtTime;//1
+    private int stuId;//2
+    private int exp;//1
+    private int level;//1
+    private String campus;//2
+    private int likeCount;//1点赞数
+    private String realName;//2
     private String address;
-    private int balance;
-    private String lastLoginTime;
-    private int takeNum;
-    private int publishNum;
+    private int balance;//2账户余额
+    private String lastLoginTime;//1
+    private int takeNum;//1接取任务数
+    private int publishNum;//1发布任务数
     private String qq;
-
     private String email;
-
     private String phone;
-
-    private int finishNum;
+    private int finishNum;//1完成任务数
 
     public int getId() {
         return id;
