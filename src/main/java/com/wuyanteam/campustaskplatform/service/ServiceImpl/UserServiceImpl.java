@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         // 重要信息置空
         if (user != null) {
             Date now = new Date();
-            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             user.setLastLoginTime(ft.format(now));
             user=userDao.save(user);
             user.setPassword("");
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
             user.setExp(0);
             user.setLevel(1);
             Date now = new Date();
-            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             user.setAccCrtTime(ft.format(now));
             user.setLastLoginTime(ft.format(now));
             user.setLikeCount(0);
